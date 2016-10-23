@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>下拉列表</title>
+    <style>
+        *{
+            margin:0px;
+            padding: 0px;
+        }
+        #menu {
+            list-style: none;
+        }
+        .main-menu {
+
+            width: 100px;
+            background: darkgrey;
+            margin-right: 5px;
+        }
+        .main-menu a{
+            text-decoration: none;
+            color: purple;
+            display: block;
+            line-height: 30px;
+            text-align: center;
+        }
+        .sub-menu{
+            background: #ccc;
+            display: none;
+
+        }
+        .sub-menu li{
+            border-bottom: 1px dashed #000;
+        }
+        .sub-menu a{
+            text-align: left;
+            line-height:30px;
+            text-indent: 5px;
+        }
+    </style>
+
+</head>
+<body>
+<ul id="menu">
+    <li class="main-menu">
+        <h3>Link1</h3>
+        <ul class="sub-menu">
+            <li><a href="#">sublink1</a></li>
+            <li><a href="#">sublink2</a></li>
+            <li><a href="#">sublink3</a></li>
+        </ul>
+    </li>
+    <li class="main-menu">
+        <h3>Link2</h3>
+        <ul class="sub-menu">
+            <li><a href="#">sublink1</a></li>
+            <li><a href="#">sublink2</a></li>
+            <li><a href="#">sublink3</a></li>
+        </ul>
+    </li>
+</ul>
+<script>
+    var oUl = document.getElementById('menu');
+    var aH3 = oUl.getElementsByTagName("h3");
+    var oSubMenu = oUl.getElementsByTagName("ul");
+    for(var i=0;i<aH3.length;i++){
+        aH3[i].onclick = function(){
+            if(this.nextElementSibling.style.display == "block"){
+                this.nextElementSibling.style.display = "none";
+            }else{
+                this.nextElementSibling.style.display ="block";
+            }
+        };
+    }
+</script>
+</body>
+</html>
