@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>下拉列表nextsibling</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            list-style: none;
+            text-align: center;
+
+        }
+        #menu{
+            background: pink;
+            color: antiquewhite;
+            width: 100px;
+        }
+        h3{
+            background: palevioletred;
+            cursor: pointer;
+            margin-bottom: 2px;
+            height: 30px;
+            line-height: 30px;
+        }
+        .sub-menu a{
+            display: block;
+            height: 30px;
+            color: white;
+            line-height: 30px;
+            text-align: left;
+            text-indent: 10px;
+        }
+        li{
+            border-bottom: dashed 1px;
+        }
+        .sub-menu{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<ul id="menu">
+    <h3>Link1</h3>
+    <ul class="sub-menu">
+        <li><a href="#">SubMenu1</a></li>
+        <li><a href="#">SubMenu2</a></li>
+        <li><a href="#">SubMenu3</a></li>
+    </ul>
+    <h3>Link2</h3>
+    <ul class="sub-menu">
+        <li><a href="#">SubMenu1</a></li>
+        <li><a href="#">SubMenu2</a></li>
+        <li><a href="#">SubMenu3</a></li>
+    </ul>
+</ul>
+<script>
+    var oUl = document.getElementById('menu');
+    var aH3 = oUl.getElementsByTagName('h3');
+    for(var i=0;i<aH3.length;i++){
+        aH3[i].onmouseover = function(){
+            var oSub = this.nextElementSibling;
+//            alert(1);
+//            console.log(this.nextSibling);
+            oSub.style.display = 'block';
+        }
+        aH3[i].onselectstart = function()
+        {
+            return false;
+        };
+    }
+
+
+</script>
+</body>
+</html>
