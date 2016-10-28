@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>下拉列表nextsibling</title>
+    <title>下拉列表nextsibling 兼 index</title>
     <style>
         *{
             margin: 0;
@@ -58,13 +58,49 @@
 <script>
     var oUl = document.getElementById('menu');
     var aH3 = oUl.getElementsByTagName('h3');
+    var aUL = oUl.getElementsByTagName('ul');
+//    var bShow = false;//一个标识位，用来表示菜单是否显示，true显示
     for(var i=0;i<aH3.length;i++){
-        aH3[i].onmouseover = function(){
-            var oSub = this.nextElementSibling;
+        aH3[i].index = i ;
+        aH3[i].bShow = false;
+        aH3[i].onclick = function(){
+//            var oSub = this.nextElementSibling;
 //            alert(1);
 //            console.log(this.nextSibling);
-            oSub.style.display = 'block';
+//            oSub.style.display = 'block';
+//            this.parentNode.children[1].style.display = 'block';
+//            next(this).style.display='block';
+            var oSub = aUL[this.index];
+            if(this.bShow){
+                oSub.style.display='none';
+//                bShow = false;
+            }else{
+                oSub.style.display='block';
+//                bShow = true;
+            }
+            this,bShow = !this.bShow;
+
+
+//            if(oSub.style.display == 'none' || oSub.style.display ==''){
+//                oSub.style.display = 'block';
+//            }else{
+//                oSub.style.display = 'none';
+
+//            if(oSub.style.display =='block'){
+//                oSub.style.display = 'none';
+//            }else{
+//                oSub.style.display = 'block';
+//            }
         }
+
+        function next(elem){
+            do{
+                elem = elem.nextSibling;
+            }while(elem !=null && elem.nodeType!=1);
+            return elem;
+        }
+
+
         aH3[i].onselectstart = function()
         {
             return false;
