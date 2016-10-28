@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>下拉列表children</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            list-style: none;
+            text-align: center;
+
+        }
+        #menu{
+            background: pink;
+            color: antiquewhite;
+            width: 100px;
+        }
+        h3{
+            background: palevioletred;
+            cursor: pointer;
+            margin-bottom: 2px;
+            height: 30px;
+            line-height: 30px;
+        }
+        .sub-menu a{
+            display: block;
+            height: 30px;
+            color: white;
+            line-height: 30px;
+            text-align: left;
+            text-indent: 10px;
+        }
+        li{
+            border-bottom: dashed 1px;
+        }
+        .sub-menu{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<ul id="menu">
+    <li class="main-menu">
+        <h3>Link1</h3>
+        <ul class="sub-menu">
+            <li><a href="#">SubLink1</a></li>
+            <li><a href="#">SubLink2</a></li>
+            <li><a href="#">SubLink3</a></li>
+        </ul>
+    </li>
+    <li class="main-menu">
+        <h3>Link2</h3>
+        <ul class="sub-menu">
+            <li><a href="#">SubLink1</a></li>
+            <li><a href="#">SubLink2</a></li>
+            <li><a href="#">SubLink3</a></li>
+        </ul>
+    </li>
+</ul>
+<script>
+    var oUl = document.getElementById('menu');
+    var aLi = oUl.children;
+    for(var i=0;i<aLi.length;i++){
+        aLi[i].onmouseover = function(){
+            var oSub = this.children[1];
+            oSub.style.display = 'block';
+        }
+        aLi[i].onmouseout = function(){
+            var oSub = this.children[1];
+            oSub.style.display = 'none';
+        }
+    }
+</script>
+</body>
+</html>
