@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0px;
+            padding: 0px;
+            text-decoration: none;
+            list-style: none;
+        }
+        .main-menu {
+            width: 100px;
+            background: darkgrey;
+            margin-bottom: 5px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .main-menu a{
+
+        }
+        .sub-menu{
+            background: #ccc;
+            display: none;
+        }
+        .sub-menu li{
+            border-bottom: 1px dashed #000;
+        }
+        .sub-menu a{
+            text-align: left;
+            line-height:30px;
+            text-indent: 5px;
+            color: purple;
+            display: block;
+        }
+        #menu .main-menu:hover .sub-menu{
+            display: block;
+        }
+    </style>
+
+</head>
+<body>
+<ul id="menu">
+    <li class="main-menu">
+        <h3>Link1</h3>
+        <ul class="sub-menu">
+            <li><a href="#">SubLink1</a></li>
+            <li><a href="#">SubLink2</a></li>
+            <li><a href="#">SubLink3</a></li>
+        </ul>
+    </li>
+    <li class="main-menu">
+        <h3>Link2</h3>
+        <ul class="sub-menu">
+            <li><a href="#">SubLink1</a></li>
+            <li><a href="#">SubLink2</a></li>
+            <li><a href="#">SubLink3</a></li>
+        </ul>
+    </li>
+</ul>
+
+</body>
+</html>
