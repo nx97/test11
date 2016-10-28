@@ -61,7 +61,7 @@
     var aUL = oUl.getElementsByTagName('ul');
 //    var bShow = false;//一个标识位，用来表示菜单是否显示，true显示
     for(var i=0;i<aH3.length;i++){
-        aH3[i].index = i ;
+        aH3[i].index = i;
         aH3[i].bShow = false;
         aH3[i].onclick = function(){
 //            var oSub = this.nextElementSibling;
@@ -78,7 +78,7 @@
                 oSub.style.display='block';
 //                bShow = true;
             }
-            this,bShow = !this.bShow;
+            this.bShow = !this.bShow;
 
 
 //            if(oSub.style.display == 'none' || oSub.style.display ==''){
