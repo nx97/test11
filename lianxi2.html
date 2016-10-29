@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>图像转换</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            -webkit-user-select: none;
+            /*如果要所有的浏览器都兼容的话，需要将四个选项都选上；*/
+        }
+        #container {
+            width: 680px;
+            height: 400px;
+            margin: 50px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #tab {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        #arrow {
+            position: absolute;
+            left: 20px;
+            bottom: 20px;
+
+        }
+
+        #tab li {
+            text-decoration: none;
+            list-style: none;
+            float: left;
+            width: 20px;
+            height: 20px;
+            background: #000000;
+            color: #ffffff;
+            margin-right: 5px;
+            text-align: center;
+            line-height: 20px;
+            cursor: pointer;
+
+        }
+
+        #tab li.selected{
+            background: orange;
+
+        }
+        #arrow span{
+            background: #000000;
+            color: #ffffff;
+            float: left;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        #container img {
+            float: left;
+            width:680px;
+            height:400px;
+        }
+
+        #img{
+            position: absolute;
+            left:0;
+            overflow: hidden;
+            transition: 1s;
+        }
+
+        /*#container img.selected{*/
+            /*display: block;*/
+        /*}*/
+    </style>
+</head>
+<body>
+<div id="container">
+    <ul id="tab">
+        <li class="selected">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <div id="img">
+        <img class="selected" src="1.jpg">
+        <img src="2.jpg">
+        <img src="3.jpg">
+        <img src="4.jpg">
+    </div>
+    <div id="arrow">
+        <span id="prev">&lt;</span>
+        <span id="next">&gt;</span>
+    </div>
+</div>
+<script>
+    var oContainer = document.getElementById('container');
+    var aLi = oContainer.getElementsByTagName('li');
+    var aImg = oContainer.getElementsByTagName('img');
+    var oNext = document.getElementById('next');
+    var oPrev = document.getElementById('prev');
+    var index = 0; //记录当前显示的索引；
+    var timer;
+    var oImg = document.getElementById('img');
+    oImg.style.width = aImg[0].offsetWidth *aImg.length +'px';
+    for(var i=0;i<aLi.length;i++){
+        aLi[i].index = i;
+        aLi[i].onmouseover = function () {
+            index = this.index;
+            changeImg(index);
+        };
+    }
+    function changeImg(index){
+        for(var i=0;i<aLi.length;i++){
+            aLi[i].className = '';
+//            aImg[i].className = '';
+        }
+//            aLi[this.index]
+        aLi[index].className = 'selected';
+//        aImg[index].className = 'selected';
+        oImg.style.left = -aImg[0].offsetWidth *index +'px';
+    }
+    oNext.onclick = function(){
+        index++;
+        index = index%4;
+        changeImg(index);
+    };
+    oPrev.onclick = function(){
+        if(index){
+            index--;
+        }else{
+            index = aLi.length -1;
+        }
+        changeImg(index);
+    };
+
+    function nx(){
+        timer = setInterval(
+                function(){
+                    oNext.onclick();
+                },1000);
+    };
+    nx();
+
+    oContainer.onmouseover = function(){
+        clearInterval(timer);
+    };
+    oContainer.onmouseout = function(){
+        nx();
+    }
+
+</script>
+</body>
+</html>
