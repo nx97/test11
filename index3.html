@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            list-style: none;
+        }
+        .main-menu{
+            float: left;
+            width: 100px;
+            margin-right: 5px;
+        }
+        h3{
+            display: block;
+            height: 30px;
+            line-height: 30px;
+            background: black;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+        }
+        .sub-menu{
+            display: none;
+        }
+        .sub-menu li{
+            height: 25px;
+            background: pink;
+            border-bottom: 1px dashed;
+            text-indent: 5px;
+        }
+        .sub-menu li a{
+            color:black;
+            line-height: 25px;
+        }
+    </style>
+</head>
+<body>
+<ul id="menu">
+    <li class="main-menu">
+        <h3>Link1</h3>
+        <ul class="sub-menu">
+            <li><a href="#">SubLink1</a></li>
+            <li><a href="#">SubLink2</a></li>
+            <li><a href="#">SubLink3</a></li>
+        </ul>
+    </li>
+    <li class="main-menu">
+        <h3>Link2</h3>
+        <ul class="sub-menu">
+            <li><a href="#">SubLink1</a></li>
+            <li><a href="#">SubLink2</a></li>
+            <li><a href="#">SubLink3</a></li>
+        </ul>
+    </li>
+    <li class="main-menu">
+        <h3>Link3</h3>
+        <ul class="sub-menu">
+            <li><a href="#">SubLink1</a></li>
+            <li><a href="#">SubLink2</a></li>
+            <li><a href="#">SubLink3</a></li>
+        </ul>
+    </li>
+</ul>
+<script>
+    var oUl = document.getElementById('menu');
+    var aH3 = oUl.getElementsByTagName('h3');
+    var aSub = oUl.getElementsByTagName('ul');
+    for(var i=0;i<aH3.length;i++) {
+        aH3[i].index = i;
+        aH3[i].bShow = false;
+        aH3[i].onclick = function () {
+            if (this.bShow) {
+                aSub[this.index].style.display = 'none';
+            }
+            else {
+                aSub[this.index].style.display = 'block';
+            }
+            this.bShow = !this.bShow;
+        };
+
+//            aH3[i].onselectstart = function () {
+//                return false;
+//            };
+
+        document.onselectstart = function(){
+            return false;
+        };
+
+    }
+
+    //        aH3[i].onmouseover = function () {
+    //            aSub[this.index].style.display = 'block';
+    //        };
+    //        aH3[i].onmouseout = function () {
+    //            if(aSub[this.index].style.display == 'none'){
+    //                aSub[this.index].style.display = 'block';
+    //            }else{
+    //                aSub[this.index].style.display = 'none';
+    //            }
+    //        };
+</script>
+</body>
+</html>
