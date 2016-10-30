@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            list-style: none;
+        }
+        .main-menu{
+            float: left;
+            width: 100px;
+            margin-right: 5px;
+        }
+        h3{
+            background: black;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+        }
+        .sub-menu{
+            display: none;
+        }
+        .sub-menu li{
+            height: 25px;
+            background: pink;
+            border-bottom: 1px dashed;
+            text-indent: 5px;
+        }
+        .sub-menu li a{
+            color:black;
+            line-height: 25px;
+        }
+    </style>
+</head>
+<body>
+<ul id="menu">
+    <li class="main-menu">
+        <h3>Link1</h3>
+        <ul class="sub-menu">
+            <li><a href="#">SubLink1</a></li>
+            <li><a href="#">SubLink2</a></li>
+            <li><a href="#">SubLink3</a></li>
+        </ul>
+    </li>
+    <li class="main-menu">
+        <h3>Link2</h3>
+        <ul class="sub-menu">
+            <li><a href="#">SubLink1</a></li>
+            <li><a href="#">SubLink2</a></li>
+            <li><a href="#">SubLink3</a></li>
+        </ul>
+    </li>
+    <li class="main-menu">
+        <h3>Link3</h3>
+        <ul class="sub-menu">
+            <li><a href="#">SubLink1</a></li>
+            <li><a href="#">SubLink2</a></li>
+            <li><a href="#">SubLink3</a></li>
+        </ul>
+    </li>
+</ul>
+<script>
+    var oUl = document.getElementById('menu');
+    var aH3 = oUl.getElementsByTagName('h3');
+    //     var aSub = oUl.getElementsByTagName('ul');
+    for(var i=0;i<aH3.length;i++){
+        aH3[i].onmouseover = function () {
+            next(this).style.display='block';
+        }
+        aH3[i].onmouseout = function () {
+            if(next(this).style.display=='none'){
+                next(this).style.display='block';
+            }else{
+                next(this).style.display='none';
+            }
+        }
+    }
+    function next(elem){
+        do{
+            elem = elem.nextSibling;
+        }while(elem && elem.nodeType!=1);
+        return elem;
+    };
+
+</script>
+</body>
+</html>
