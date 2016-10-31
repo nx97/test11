@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>change card</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            list-style: none;
+        }
+        #container{
+            position: relative;
+            left: 200px;
+            top: 150px;
+            background: #4b3380;
+            width: 600px;
+            height: 350px;
+        }
+        #tab{
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+        #tab li{
+            float: left;
+            background: #000000;
+            color: #ffffff;
+            margin-right: 5px;
+            width: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+        #tab li.selected{
+            background: orange;
+        }
+        #arrow{
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+        }
+        #arrow span{
+            float: left;
+            background: #000000;
+            color: #ffffff;
+            margin-right: 5px;
+            width: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+        #content img{
+            width: 600px;
+            height: 350px;
+            display: none;
+        }
+        #content img.selected{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <ul id="tab">
+        <li class="selected">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <div id="content">
+        <img class="selected" src="1.jpg">
+        <img src="2.jpg">
+        <img src="3.jpg">
+        <img src="4.jpg">
+    </div>
+    <div id="arrow">
+        <span id="prev">&lt;</span>
+        <span id="next">&gt;</span>
+    </div>
+</div>
+<script>
+    var oCon = document.getElementById('container');
+    var aLi = oCon.getElementsByTagName('li');
+    var aImg = oCon.getElementsByTagName('img');
+    var oNext = document.getElementById('next');
+    var oPrev = document.getElementById('prev');
+    var iNow = 0;
+    for(var i=0;i<aLi.length;i++){
+        aLi[i].index = i;
+        aLi[i].onmouseover = function () {
+            changeImg(this.index);
+            iNow = this.index;
+        };
+    }
+    function changeImg(index){
+        for(var i=0;i<aLi.length;i++){
+            aLi[i].className = '';
+            aImg[i].className = '';
+        }
+        aLi[index].className = 'selected';
+        aImg[index].className = 'selected';
+    };
+
+    oNext.onclick = function () {
+        iNow++;
+        iNow = iNow % aLi.length;
+        changeImg(iNow);
+    }
+
+    oPrev.onclick = function () {
+        iNow--;
+        if(iNow == -1){
+            iNow = aLi.length - 1;
+        }
+        changeImg(iNow);
+    }
+
+    timer = setInterval(function () {
+        oNext.onclick();
+    },1000);
+
+    oCon.onmouseover = function () {
+        clearInterval(timer);
+    }
+
+    oCon.onmouseout = function () {
+        timer = setInterval(function () {
+            oNext.onclick();
+        },1000);
+    }
+
+    document.onselectstart = function () {
+        return false;
+    }
+</script>
+</body>
+</html>
