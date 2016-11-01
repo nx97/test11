@@ -34,9 +34,6 @@
             color: purple;
             display: block;
         }
-        #menu .main-menu:hover .sub-menu{
-            display: block;
-        }
     </style>
 
 </head>
@@ -59,6 +56,35 @@
         </ul>
     </li>
 </ul>
+<script>
+    var oUl = document.getElementById('menu');
+    var aH3 = oUl.getElementsByTagName('h3');
+    var aUl = oUl.getElementsByTagName('ul');
 
+ //   var bShow = false ; //false代表隐藏。true代表显示；
+    for(var i=0;i<aH3.length;i++){
+        aH3[i].index = i ;
+        aH3[i].bShow = false ;
+        aH3[i].onclick = function () {
+            var oSub = aUl[this.index];
+            if(this.bShow){
+                oSub.style.display = 'none';
+            }else{
+                oSub.style.display = 'block';
+            }
+            this.bShow = !this.bShow;
+
+
+//            if(oSub.style.display == 'block'){
+//                oSub.style.display = 'none';
+//            }else{
+//                oSub.style.display = 'block';
+//            }
+        };
+
+    }
+
+
+</script>
 </body>
 </html>
