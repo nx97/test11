@@ -60,6 +60,7 @@
         #content {
             position: absolute;
             left: 0;
+            /*transition: 1s;*/
         }
 
         #content img {
@@ -89,6 +90,7 @@
     </div>
 </div>
 </body>
+<script src="jslib.js"></script>
 <script>
     window.onload = function () {
         var oCon = document.getElementById('container');
@@ -114,7 +116,8 @@
                 aLi[i].className = '';
             }
             aLi[index].className = 'selected';
-            oContent.style.left = -aImg[0].offsetWidth * index + 'px';
+            animate(oContent,{left:-aImg[0].offsetWidth * index})
+//            oContent.style.left = -aImg[0].offsetWidth * index + 'px';
         };
         oNext.onclick = function () {
             iNow++;
