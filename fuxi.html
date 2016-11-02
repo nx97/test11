@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8" content="something searched by someone(keyword)">
+        <title>title in the higher windows</title>
+    </head>
+    <body>
+        <h1>h1</h1> //start from h1 ,end in h6
+    <p>pppp</p>
+        <a href="#">baidu</a>
+    <div>div+css</div>
+    <table>
+        <tr>
+            <td>001</td>
+            <td>002</td>
+        </tr>
+    </table>
+    </body>
+</html>
+<!--
+行级元素Inline：
+块级元素Block：在没有设置宽高的时候它是占据整个body的
+
+选择器：标签/元素 选择器
+id选择器
+class选择器
+后代选择器：用空隔分开
+子代选择器 > 例如div>p{} 不兼容IE6
+伪类选择器： :hover{
+a:link  a:visited a:active
+}
+分组选择器 div,p{}
+兄弟选择器
+属性选择器
+
+在W3C手册的环境下，我们给盒模型设置的宽和高是对它的内容设置的，会扩充他的范围
+在两个兄弟关系的盒模型设置外边距的时候，如果一个设置了下边距，一个设置了上边距，则只取其中的一个最大值。
+当连个元素是父子关系的时候，如果给子元素设置外边距的时候，父元素也会变化。如果要改变这种情况的话，就要用overflow:hidden
+body自带8个像素的外边距，所以一般在最开始的时候用*将所有的边距去掉
+float脱离文档流，释放空间
+background 可以将很多属性集合在一起写，同类的还有border
+display none block inline  inline-block
+(在div换行的时候会导致有空格，并且在IE中不兼容，并且最好地方法不是用float)
+ //display none 不显示，visibility :hidden 隐藏
+ undefined 和 none “==”是因为undefined是由none衍生而来的，而“===”是表明两者的类型，所以不是相等的，为false
+ none在早期的js定义里的是object类型，是早期的bug
+ children下面的是必须是亲子代，childNode有时候会带有文本
+ var obj = {
+ name :"zhangsan"
+age:18
+school:"heida"
+ };
+var obj1 = new object();
+obj1.name = "zhangsan";
+for(var p in obj){
+console.log(p +":"+obj[p]);
+}console.log(obj.age);
+
+var arr=[1,2,3,4]
+for(var p in arr){
+console.log(p +":"+arr[p]);
+}
+onclick也可以是键盘点击，但是onmouseclickdown代表只能用鼠标点击
+事件三要素，事件源，事件对象，
+
+用Tag返回的数组并不是严格意义上的数组，而是一个nodelist，应该叫做一个节点列表，数组的一些push类似的不能用；
+用索引的目的就是记录for循环的过程i的变化过的数值；
+对象。属性
+封装一个函数的方式:function aa(){};aa();//可以先调用；函数声明的方式
+var lib = function(){};lib();这种方式不能先调用。 //这种方式叫做函数未定义的方式；
+1代表元素节点，3代表文本节点，8代表注释
+overflow:hidden一般是用在子元素释放空间，原来的位置被占用的时候使用。
+定时器返回的值是数值型的，number型一个数字，一共有两种定时器；
+offsetWidth:包括内边距，内容和border，相对于祖先元素定位，//width,height,parent,left,top一共五个；
+
+权重值 id100 class10 tag1
+-->
