@@ -23,7 +23,7 @@
 <script>
     (function(){
         var oDrag = document.getElementById('drag');
-        document.onmousedown = function (e) {
+        oDrag.onmousedown = function (e) {
             e = e || window.event;
             var iDisX = e.clientX - oDrag.offsetLeft;
             var iDisY = e.clientY - oDrag.offsetTop;
@@ -38,7 +38,7 @@
                 return false;
             };
         };
-        document.onmouseup = function () {
+        oDrag.onmouseup = function () {
             document.onmousemove = null;
         };
     })();
