@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>拖拽</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #drag{
+            width: 170px;
+            height: 200px;
+            background: #4b3380;
+            cursor: pointer;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<h1>hhhhhhhhhhhhhhhhhhhhh</h1>
+<div id="drag"></div>
+<script>
+    (function(){
+        var oDrag = document.getElementById('drag');
+        document.onmousedown = function (e) {
+            e = e || window.event;
+            var iDisX = e.clientX - oDrag.offsetLeft;
+            var iDisY = e.clientY - oDrag.offsetTop;
+//            var target = e.target || e.srcElement;
+//            alert(target);
+            document.onmousemove = function (e) {
+                e = e || window.event;
+                var left = e.clientX - iDisX;
+                var top = e.clientY - iDisY;
+                oDrag.style.left = left +'px';
+                oDrag.style.top = top +'px';
+                return false;
+            };
+        };
+        document.onmouseup = function () {
+            document.onmousemove = null;
+        };
+    })();
+
+//    事件源e.target(e是有兼容性问题的，在早期系统中是window.event)，事件处理函数，事件对象
+</script>
+</body>
+</html>
