@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>放大镜</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            border: 0;
+        }
+        #s-pic{
+            position: relative;
+            left: 0;
+            float: left;
+            width: 400px;
+            height: 400px;
+        }
+        #s-img{
+            width: 400px;
+            height: 400px;
+        }
+        #b-pic{
+            width: 400px;
+            height: 400px;
+            float: left;
+            position: relative;
+            left: 0;
+            overflow: hidden;
+            display: none;
+        }
+        #b-img{
+            position: absolute;
+            left:0;
+        }
+        #drag{
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #cccccc;
+            width: 200px;
+            height: 200px;
+            opacity: .5;
+            filter: alpha(opacity = 50);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="s-pic">
+    <div id="drag"></div>
+    <img id="s-img" src="1.jpg" alt=""/>
+</div>
+<div id="b-pic">
+    <img id="b-img" src="2.jpg" alt=""/>
+</div>
+<script>
+    var oSPic = document.getElementById('s-pic');
+    var oDrag = document.getElementById('drag');
+    var oBPic = document.getElementById('b-pic');
+    var oBImg = document.getElementById('b-img');
+
+    oSPic.onmouseover = function () {
+        oDrag.style.display = 'block';
+        oBPic.style.display = 'block';
+    };
+    oSPic.onmouseout = function () {
+        oDrag.style.display = 'none';
+        oBPic.style.display = 'none';
+    };
+    oSPic.onmousemove = function (e) {
+        e = e || window.event;
+        var left = e.clientX - oDrag.offsetWidth/2 ;
+        var top = e.clientY - oDrag.offsetHeight/2 ;
+        if(left < 0){
+            left = 0;
+        }
+        if(top < 0){
+            top = 0;
+        }
+        var LeftMax = oSPic.offsetWidth - oDrag.offsetWidth;
+        var TopMax = oSPic.offsetHeight - oDrag.offsetHeight;
+        if(left > LeftMax){
+            left = LeftMax;
+        }
+        if(top > TopMax){
+            top = TopMax;
+        }
+        oDrag.style.left = left + 'px';
+        oDrag.style.top = top + 'px';
+
+        var fScaleX = left / LeftMax;
+        var fScaleY = top / TopMax;
+
+        oBImg.style.left = -(oBImg.offsetWidth - oBPic.offsetWidth) * fScaleX + 'px';
+        oBImg.style.top = -(oBImg.offsetHeight - oBPic.offsetHeight) * fScaleY + 'px';
+
+    };
+
+</script>
+</body>
+</html>
