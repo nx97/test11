@@ -46,59 +46,70 @@
             filter: alpha(opacity = 50);
             display: none;
         }
+        #mask{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 400px;
+            height: 400px;
+            opacity: 0;
+            filter: alpha(opacity = 0);
+        }
     </style>
 </head>
-    <body>
-    <div id="s-pic">
-        <div id="drag"></div>
-        <img id="s-img" src="1.jpg" alt=""/>
-    </div>
-    <div id="b-pic">
-        <img id="b-img" src="2.jpg" alt=""/>
-    </div>
-    <script>
-        var oSPic = document.getElementById('s-pic');
-        var oDrag = document.getElementById('drag');
-        var oBPic = document.getElementById('b-pic');
-        var oBImg = document.getElementById('b-img');
+<body>
+<div id="s-pic">
+    <div id="drag"></div>
+    <div id="mask"></div>
+    <img id="s-img" src="1.jpg" alt=""/>
+</div>
+<div id="b-pic">
+    <img id="b-img" src="2.jpg" alt=""/>
+</div>
+<script>
+    var oSPic = document.getElementById('s-pic');
+    var oDrag = document.getElementById('drag');
+    var oBPic = document.getElementById('b-pic');
+    var oBImg = document.getElementById('b-img');
+    var oMask = document.getElementById('mask');
 
-        oSPic.onmouseover = function () {
-            oDrag.style.display = 'block';
-            oBPic.style.display = 'block';
-        };
-        oSPic.onmouseout = function () {
-            oDrag.style.display = 'none';
-            oBPic.style.display = 'none';
-        };
-        oSPic.onmousemove = function (e) {
-            e = e || window.event;
-            var left = e.clientX - oDrag.offsetWidth/2 ;
-            var top = e.clientY - oDrag.offsetHeight/2 ;
-            if(left < 0){
-                left = 0;
-            }
-            if(top < 0){
-                top = 0;
-            }
-            var LeftMax = oSPic.offsetWidth - oDrag.offsetWidth;
-            var TopMax = oSPic.offsetHeight - oDrag.offsetHeight;
-            if(left > LeftMax){
-                left = LeftMax;
-            }
-            if(top > TopMax){
-                top = TopMax;
-            }
-            oDrag.style.left = left + 'px';
-            oDrag.style.top = top + 'px';
+    oMask.onmouseover = function () {
+        oDrag.style.display = 'block';
+        oBPic.style.display = 'block';
+    };
+    oMask.onmouseout = function () {
+        oDrag.style.display = 'none';
+        oBPic.style.display = 'none';
+    };
+    oMask.onmousemove = function (e) {
+        e = e || window.event;
+        var left = e.clientX - oDrag.offsetWidth/2 ;
+        var top = e.clientY - oDrag.offsetHeight/2 ;
+        if(left < 0){
+            left = 0;
+        }
+        if(top < 0){
+            top = 0;
+        }
+        var LeftMax = oSPic.offsetWidth - oDrag.offsetWidth;
+        var TopMax = oSPic.offsetHeight - oDrag.offsetHeight;
+        if(left > LeftMax){
+            left = LeftMax;
+        }
+        if(top > TopMax){
+            top = TopMax;
+        }
+        oDrag.style.left = left + 'px';
+        oDrag.style.top = top + 'px';
 
-            var fScaleX = left / LeftMax;
-            var fScaleY = top / TopMax;
+        var fScaleX = left / LeftMax;
+        var fScaleY = top / TopMax;
 
-            oBImg.style.left = -(oBImg.offsetWidth - oBPic.offsetWidth) * fScaleX + 'px';
-            oBImg.style.top = -(oBImg.offsetHeight - oBPic.offsetHeight) * fScaleY + 'px';
+        oBImg.style.left = -(oBImg.offsetWidth - oBPic.offsetWidth) * fScaleX + 'px';
+        oBImg.style.top = -(oBImg.offsetHeight - oBPic.offsetHeight) * fScaleY + 'px';
 
-        };
+    };
 
-    </script>
-    </body>
+</script>
+</body>
 </html>
