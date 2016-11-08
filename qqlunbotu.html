@@ -15,13 +15,13 @@
         <li>005</li>
     </div>
     <div id="S-index">
-        <span id="span1">&lt;</span>
+        <span id="prev">&lt;</span>
         <li><img class="selected" src="001.jpg"></li>
         <li><img src="002.jpg"></li>
         <li><img src="003.jpg"></li>
         <li><img src="004.jpg"></li>
         <li><img src="005.jpeg"></li>
-        <span id="span2">&gt;</span>
+        <span id="next">&gt;</span>
     </div>
     <div id="content">
         <img class="selected" src="001.jpg">
@@ -33,9 +33,16 @@
 </div>
 <script>
     var oCon = document.getElementById('container');
-    var oLin = document.getElementById('L-index');
-    var aLiImg = oLin.getElementsByTagName('li');
-
+    var oSin = document.getElementById('S-index');
+    var aLiImg = oSin.getElementsByTagName('li');
+    for(var i=0;i<aLiImg.length;i++)
+    aLiImg[i].index = i;
+    aLiImg[i].onmouseover = function(){
+        for(var i=0;i<aLiImg.length;i++){
+            aLiImg[i].className = '';
+        }
+        aLiImg[this.index].className = 'selected';
+    };
 </script>
 </body>
 </html>
