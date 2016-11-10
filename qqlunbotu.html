@@ -35,14 +35,18 @@
     var oCon = document.getElementById('container');
     var oSin = document.getElementById('S-index');
     var aLiImg = oSin.getElementsByTagName('li');
+
     for(var i=0;i<aLiImg.length;i++)
     aLiImg[i].index = i;
     aLiImg[i].onmouseover = function(){
+        changeImg(index);
+    };
+    function changeImg(index){
         for(var i=0;i<aLiImg.length;i++){
             aLiImg[i].className = '';
         }
-        aLiImg[this.index].className = 'selected';
-    };
+        aLiImg[index].className = 'selected';
+    }
 </script>
 </body>
 </html>
