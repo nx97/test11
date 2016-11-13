@@ -37,12 +37,20 @@
         var oSin = document.getElementById('S-index');
         var aLiImg = oSin.getElementsByTagName('li');
         var aLi = oTxt.getElementsByTagName('li');
+        var timer;
 
         for(var i=0;i<aLiImg.length;i++)
         aLiImg[i].index = i;
         aLiImg[i].onmouseover = function(){
             changeImg(index);
         };
+
+
+        timer = setInterval(function () {
+            
+        },1000);
+
+
         function changeImg(index){
             for(var i=0;i<aLiImg.length;i++){
                 aLiImg[i].className = '';
