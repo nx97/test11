@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>menu</title>
+    <style>
+        a{
+            width: 100px;
+            height: 30px;
+            background: #ff0000;
+            color: white;
+            float: left;
+            text-decoration: none;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 3px;
+        }
+        #div1{
+            height: 30px;
+            width: 420px; /*父元素的宽度不够，导致子元素元素塌陷*/
+        }
+        #div1 :hover {
+            background: #00ff00; /*hover与前面的:之间不能有空格！*/
+        }
+    </style>
+</head>
+<body id="div1">
+<a href="#">Link One</a>
+<a href="#">Link Two</a>
+<a href="#">Link Three</a>
+<a href="#">Link Four</a>
+</body>
+</html>
