@@ -20,6 +20,12 @@ ul,li{
     position: absolute;
     left: 20px;
     bottom: 30px;
+    display: none;
+}
+#txt .selected{
+    display: block;
+    background: orange;
+
 }
 #txt li{
     float: left;
@@ -30,6 +36,7 @@ ul,li{
     height: 20px;
     width: 35px;
 }
+
 #S-index{
     position: absolute;
     right: 20px;
