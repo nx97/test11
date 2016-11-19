@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>work3</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            float: left;
+        }
+        #s-pic{
+            width: 400px;
+            height: 400px;
+            position: relative;
+        }
+        #s-pic img{
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+        #drag{
+            width: 200px;
+            height: 200px;
+            background: #cccccc;
+            opacity: 0.5;
+            filter: alpha(opacity = 50);
+            display: none;
+        }
+        #b-pic{
+            width: 400px;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            display: none;
+        }
+        #b-pic img{
+            position: absolute;
+            left:0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div id="s-pic">
+    <img src="1.jpg">
+    <div id="drag"></div>
+</div>
+<div id="b-pic">
+    <img src="2.jpg">
+</div>
+<script>
+    var oSpic = document.getElementById('s-pic');
+    var oDrag = document.getElementById('drag');
+    var oBpic = document.getElementById('b-pic');
+    oSpic.onmouseover = function () {
+        oDrag.style.display = 'block';
+        oBpic.style.display = 'block';
+    };
+    oSpic.onmouseout = function () {
+        oDrag.style.display = 'none';
+        oBpic.style.display = 'none';
+    };
+    oDrag.onmousedown = function () {
+
+    }
+
+</script>
+</body>
+</html>
