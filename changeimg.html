@@ -41,6 +41,7 @@
         <img src="images/8.jpg" alt="">
         <img src="images/9.jpg" alt="">
     </div>
+    <script src="jslib.js"></script>
     <script>
         var oCon = document.getElementById('container');
         var aImg = oCon.getElementsByTagName('img');
@@ -51,6 +52,7 @@
             aImg[i].style.left = aImg[i].offsetLeft + 'px';
             aImg[i].style.top = aImg[i].offsetTop + 'px';
             aImg[i].style.position = 'absolute';
+            aImg[i].style.margin = 0;
             drag(aImg[i]);
         }
         function drag(elem) {
@@ -59,6 +61,10 @@
                 var iDisX = e.clientX - elem.offsetLeft;
                 var iDisY = e.clientY - elem.offsetTop;
                 elem.style.zIndex = zIndex++;
+                elem.pos = {
+                    left:elem.offsetLeft,
+                    top:elem.offsetTop
+                };
                document.onmousemove = function (e) {
                     e = e || window.event;
                     var iLeft = e.clientX - iDisX;
@@ -91,6 +97,17 @@
             };
             elem.onmouseup = function () {
                 document.onmousemove = null;
+                if(nearElem){
+                    animate(elem,{
+                        left:nearElem.offsetLeft,
+                        top:nearElem.offsetTop
+                    });
+                    animate(nearElem,elem.pos);
+                    nearElem.className = '';
+                    nearElem = null;
+                }else{
+                    animate(elem,elem.pos);
+                }
             };
         }
 
@@ -116,7 +133,7 @@
             for(var i=0;i<collide.length;i++){
                 var x = collide[i].offsetLeft - elem.offsetLeft;
                 var y = collide[i].offsetTop - elem.offsetTop;
-                var iDis = x*x + y*y;
+                var iDis = Math.sqrt(x*x + y*y);
                 if(iDis < minDis){
                     minDis = iDis;
                     index = i;
