@@ -17,6 +17,7 @@
             height: 150px;
             margin: 10px;
             float: left;
+            cursor: pointer;
         }
         #container img.collide{
             border:solid #ff0000;
@@ -137,6 +138,9 @@
                 }
             }
             return collide[index];
+        }
+        document.onselectstart = function () {
+            return false;
         }
     </script>
 </body>
