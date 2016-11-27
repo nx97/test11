@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul,li{
+            list-style: none;
+            text-decoration: none;
+        }
+        body{
+            background: #666666;
+        }
+        #container{
+            width: 400px;
+            height: 434px;
+            margin: 50px auto;
+        }
+        #big-pic{
+            width: 400px;
+            height: 320px;
+            position: relative;
+        }
+        #big-img li{
+            width: 400px;
+            height: 320px;
+            position: absolute;
+            overflow: hidden;
+        }
+        #left,#right{
+            width: 200px;
+            height: 320px;
+            position: absolute;
+            opacity: 0;
+            filter: alpha(opacity = 0);
+            z-index: 99999;
+        }
+        #left{
+            left: 0;
+            top: 0;
+        }
+        #right{
+            right: 0;
+            top: 0;
+        }
+        #left-btn,#right-btn{
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            cursor: pointer;
+        }
+        #left-btn{
+            left: 10px;
+            top: 130px;
+            background: url("img/btn.gif");
+        }
+        #right-btn{
+            right: 10px;
+            top: 130px;
+            background: url("img/btn.gif") bottom;
+        }
+        #text{
+            width: 400px;
+            height: 30px;
+            line-height: 30px;
+            position: absolute;
+            bottom: 0;
+            background: #000000;
+            color: #ffffff;
+            opacity: 0.5;
+            filter:alpha(opacity = 50);
+            z-index: 99998;
+        }
+        #text-left{
+            position: absolute;
+            left: 10px;
+        }
+        #text-right{
+            position: absolute;
+            right: 10px;
+        }
+        #small-pic{
+            width: 400px;
+            height: 114px;
+            background: #999;
+            position: relative;
+            overflow: hidden;
+        }
+        #small-img{
+            width: 780px;
+            position: absolute;
+            left:0;
+        }
+        #small-img li{
+            width: 120px;
+            height: 94px;
+            margin: 10px 0 10px 10px;
+            float: left;
+            opacity: 0.6;
+            filter: alpha(opacity = 60);
+            cursor: pointer;
+        }
+        #small-img li img{
+            width: 120px;
+            height: 94px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="big-pic">
+            <ul id="big-img">
+                <li style="z-index: 1"><img src="img/1.jpg" title="你是"></li>
+                <li><img src="img/2.jpg" title="笨蛋"></li>
+                <li><img src="img/3.jpg" title="还是"></li>
+                <li><img src="img/4.jpg" title="傻瓜"></li>
+                <li><img src="img/5.jpg" title="嘿嘿"></li>
+                <li><img src="img/6.jpg" title="呵呵"></li>
+            </ul>
+            <div id="left">
+                <span id="left-btn"></span>
+            </div>
+            <div id="right">
+                <span id="right-btn"></span>
+            </div>
+            <div id="text">
+                <span id="text-left">你是</span>
+                <div id="text-right">
+                    <span id="num">1</span>/<span>6</span>
+                </div>
+            </div>
+        </div>
+        <div id="small-pic">
+            <ul id="small-img">
+                <li><img src="img/1.jpg"></li>
+                <li><img src="img/2.jpg"></li>
+                <li><img src="img/3.jpg"></li>
+                <li><img src="img/4.jpg"></li>
+                <li><img src="img/5.jpg"></li>
+                <li><img src="img/6.jpg"></li>
+            </ul>
+        </div>
+    </div>
+    <script src="jslib.js"></script>
+    <script>
+        var oLeft = document.getElementById('left');
+        var oRight = document.getElementById('right');
+        var oLeftBtn = document.getElementById('left-btn');
+        var oRightBtn = document.getElementById('right-btn');
+        var oBPic = document.getElementById('big-pic');
+        var aBImg = oBPic.getElementsByTagName('li');
+        var oSPic = document.getElementById('small-pic');
+        var oSImg = document.getElementById('small-img');
+        var aSImg = oSPic.getElementsByTagName('li');
+        var oTextLeft = document.getElementById('text-left');
+        var oNum = document.getElementById('num');
+        var iNow = 0;
+        var zIndex = 1;
+
+        oLeft.onmouseover = oRight.onmouseover = function () {
+            animate(this,{opacity:100});
+        };
+        oLeft.onmouseout = oRight.onmouseout = function () {
+            animate(this,{opacity:0});
+        };
+        oLeftBtn.onclick = oRightBtn.onclick = function () {
+            if(this == oLeftBtn){
+                iNow--;
+                if(iNow == -1){
+                    iNow = aBImg.length -1;
+                }
+            }else{
+                iNow++;
+                if(iNow == aBImg.length){
+                    iNow = 0;
+                }
+            }
+            changeImg(iNow);
+        };
+
+        for(var i=0;i<aSImg.length;i++){
+            aSImg[i].index = i;
+            aSImg[i].onmouseover = function () {
+                this.style.opacity = 1;
+            };
+            aSImg[i].onmouseout = function () {
+                if(this.index != iNow){
+                    this.style.opacity = 0.6;
+                }
+            };
+            aSImg[i].onclick = function () {
+                changeImg(this.index);
+            }
+        }
+
+        function changeImg(idx) {
+            aBImg[idx].style.zIndex = zIndex++;
+            aBImg[idx].style.height = 0;
+            animate(aBImg[idx],{height:320});
+            oNum.innerHTML = idx + 1 ;
+            oTextLeft.innerHTML = aBImg[idx].getElementsByTagName('img')[0].title;
+
+            iNow = idx;
+            for(var i=0;i<aSImg.length;i++){
+                aSImg[i].style.opacity = 0.6;
+            }
+            aSImg[idx].style.opacity = 1;
+
+            if(idx == 0){
+                animate(oSImg,{left:0});
+            }else if(idx == oSImg.length-1){
+                console.log(idx-2);
+                animate(oSImg,{left:-(idx-2) * (aSImg[0].offsetWidth + 10)});
+            }else{
+                animate(oSImg,{left:-(idx-1) * (aSImg[0].offsetWidth + 10)});
+
+            }
+        }
+    </script>
+</body>
+</html>
