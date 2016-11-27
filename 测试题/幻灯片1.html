@@ -147,6 +147,7 @@
     </div>
     <script src="jslib.js"></script>
     <script>
+        var oContainer = document.getElementById('container');
         var oLeft = document.getElementById('left');
         var oRight = document.getElementById('right');
         var oLeftBtn = document.getElementById('left-btn');
@@ -217,8 +218,20 @@
                 animate(oSImg,{left:-(idx-2) * (aSImg[0].offsetWidth + 10)});
             }else{
                 animate(oSImg,{left:-(idx-1) * (aSImg[0].offsetWidth + 10)});
-
             }
+        }
+
+        var timer = setInterval(function () {
+            oRightBtn.onclick();
+        },2000);
+
+        oContainer.onmouseover = function () {
+            clearInterval(timer);
+        };
+        oContainer.onmouseout = function () {
+            timer = setInterval(function () {
+                oRightBtn.onclick();
+            },2000);
         }
     </script>
 </body>
