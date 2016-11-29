@@ -2,37 +2,72 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>drag</title>
+    <title>scroll</title>
     <style>
         *{
             margin: 0;
             padding: 0;
         }
-        #drag{
-            width: 200px;
-            height: 200px;
-            background: #ff0000;
-            cursor: pointer;
+        #container{
+            width: 350px;
+            height: 500px;
+            overflow: hidden;
+            position: relative;
+        }
+        #content{
+            width: 330px;
+            background: pink;
             position: absolute;
+            left:0;
+            top:0;
+        }
+        #scroll-bar{
+            width: 20px;
+            height: 500px;
+            position: absolute;
+            right: 0;
+            top:0;
+            background: hotpink;
+        }
+        #scroll-btn{
+            width: 20px;
+            height: 30px;
+            background: deeppink;
+            position: absolute;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <div id="drag"></div>
+    <div id="container">
+        <div id="content">好的好的你不用担心啦，我现在很好的，我只希望你自己能够保重你自己，不要总是担心我，自己的身体才是最重要的，我在这里的一切都很好，公司给我的待遇很高，我也不需要担心什么生活问题，同事们都相处的非常融洽，所以我真的是一点问题都没有啦，都是你们太爱操心了好不好，我再过上几个月就要转正了啦，所以你知道我是不会出现什么漏洞的，我做事一向很小心的，就算是除了什么bug，我也能够很快摆平的，所以你们就安安心心在家里呆着吧，这个工作很好的，老板人也很好的，虽然有点累，但是薪水真的不错，若是以后干不下去了的话，我再考虑考虑转业，但是就现在而言，我真的不觉得我还有其他的路可以选择，不过答应你们的事我是不会忘记的，我也会遵守我的承诺，你们放心！好的好的你不用担心啦，我现在很好的，我只希望你自己能够保重你自己，不要总是担心我，自己的身体才是最重要的，我在这里的一切都很好，公司给我的待遇很高，我也不需要担心什么生活问题，同事们都相处的非常融洽，所以我真的是一点问题都没有啦，都是你们太爱操心了好不好，我再过上几个月就要转正了啦，所以你知道我是不会出现什么漏洞的，我做事一向很小心的，就算是除了什么bug，我也能够很快摆平的，所以你们就安安心心在家里呆着吧，这个工作很好的，老板人也很好的，虽然有点累，但是薪水真的不错，若是以后干不下去了的话，我再考虑考虑转业，但是就现在而言，我真的不觉得我还有其他的路可以选择，不过答应你们的事我是不会忘记的，我也会遵守我的承诺，你们放心！好的好的你不用担心啦，我现在很好的，我只希望你自己能够保重你自己，不要总是担心我，自己的身体才是最重要的，我在这里的一切都很好，公司给我的待遇很高，我也不需要担心什么生活问题，同事们都相处的非常融洽，所以我真的是一点问题都没有啦，都是你们太爱操心了好不好，我再过上几个月就要转正了啦，所以你知道我是不会出现什么漏洞的，我做事一向很小心的，就算是除了什么bug，我也能够很快摆平的，所以你们就安安心心在家里呆着吧，这个工作很好的，老板人也很好的，虽然有点累，但是薪水真的不错，若是以后干不下去了的话，我再考虑考虑转业，但是就现在而言，我真的不觉得我还有其他的路可以选择，不过答应你们的事我是不会忘记的，我也会遵守我的承诺，你们放心！</div>
+        <div id="scroll-bar">
+            <div id="scroll-btn"></div>
+        </div>
+    </div>
     <script>
-        var oDrag = document.getElementById('drag');
-        oDrag.onmousedown = function (e) {
+        var oSBar = document.getElementById('scroll-bar');
+        var oSBtn = document.getElementById('scroll-btn');
+        var oCon = document.getElementById('content');
+        oSBtn.onmousedown = function (e) {
             e = e || window.event;
-            var iDisX = e.clientX - oDrag.offsetLeft;
-            var iDisY = e.clientY - oDrag.offsetTop;
+            var iDisY = e.clientY - oSBtn.offsetTop;
             document.onmousemove = function (e) {
                 e = e || window.event;
-                var left = e.clientX - iDisX;
                 var top = e.clientY - iDisY;
-                oDrag.style.left = left + 'px';
-                oDrag.style.top = top + 'px';
+                if(top < 0){
+                    top = 0;
+                }
+                var MaxTop = oSBar.offsetHeight - oSBtn.offsetHeight;
+                if(top > MaxTop){
+                    top = MaxTop;
+                }
+                oSBtn.style.top = top + 'px';
+                var fScale = top/MaxTop;
+                var MaxCon = oCon.offsetHeight - oSBar.offsetHeight;
+                oCon.style.top = -fScale * MaxCon + 'px';
                 return false;
-            }
+            };
         };
         document.onmouseup = function () {
             document.onmousemove = null;
