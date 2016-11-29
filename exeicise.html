@@ -2,79 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>selected card</title>
+    <title>drag</title>
     <style>
         *{
             margin: 0;
             padding: 0;
         }
-        li{
-            list-style: none;
-            text-decoration: none;
-        }
-        #container{
-            width: 400px;
-            height: 350px;
-            margin: 50px auto;
-        }
-        #menu{
-            width: 400px;
-            height: 30px;
-            overflow: hidden;
-        }
-        #menu li{
-            width: 120px;
-            height: 30px;
-            background: #000000;
-            color: #ffffff;
-            line-height: 30px;
-            text-align: center;
-            float: left;
-            margin-right: 10px;
+        #drag{
+            width: 200px;
+            height: 200px;
+            background: #ff0000;
             cursor: pointer;
-        }
-        #content{
-            width: 400px;
-            height: 320px;
-            background: #cccccc;
-        }
-        #content li{
-            display: none;
-        }
-        #content li.selected{
-            display: block;
+            position: absolute;
         }
     </style>
 </head>
 <body>
-    <div id="container">
-        <div id="menu">
-            <li class="selected">Selected One</li>
-            <li>Selected Two</li>
-            <li>Selected Three</li>
-        </div>
-        <div id="content">
-            <li class="selected">111111111111</li>
-            <li>22222222222222</li>
-            <li>3333333</li>
-        </div>
-    </div>
+    <div id="drag"></div>
     <script>
-        var oMenu = document.getElementById('menu');
-        var oContent = document.getElementById('content');
-        var aLi = oMenu.getElementsByTagName('li');
-        var aCon = oContent.getElementsByTagName('li');
-
-        for(var i=0;i<aLi.length;i++){
-            aLi[i].index = i;
-            aLi[i].onclick = function () {
-                for(var i=0;i<aLi.length;i++){
-                    aLi[i].className = '';
-                    aCon[i].className = '';
-                }
-                this.className = 'selected';
-                aCon[this.index].className = 'selected';
+        var oDrag = document.getElementById('drag');
+        oDrag.onmousedown = function (e) {
+            e = e || window.event;
+            var iDisX = e.clientX - oDrag.offsetLeft;
+            var iDisY = e.clientY - oDrag.offsetTop;
+            document.onmousemove = function (e) {
+                e = e || window.event;
+                var left = e.clientX - iDisX;
+                var top = e.clientY - iDisY;
+                oDrag.style.left = left + 'px';
+                oDrag.style.top = top + 'px';
+                return false;
             }
+        };
+        document.onmouseup = function () {
+            document.onmousemove = null;
         }
     </script>
 </body>
