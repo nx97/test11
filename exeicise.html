@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>exercise</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul,li{
+            list-style: none;
+            text-decoration: none;
+        }
+        #menu .main-menu{
+            float: left;
+            background: #cccccc;
+            margin-right: 5px;
+            width: 100px;
+        }
+        #menu .sub-menu li{
+            border-bottom: 1px dashed #000;
+            height: 30px;
+            line-height: 30px;
+            text-indent: 5px;
+        }
+        #menu .sub-menu{
+            display: none;
+        }
+        h3{
+            height: 30px;
+            background: #000000;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <ul id="menu">
+        <li class="main-menu">
+            <h3>Link1</h3>
+            <ul class="sub-menu">
+                <li>SubLink1</li>
+                <li>SubLink2</li>
+                <li>SubLink3</li>
+            </ul>
+        </li>
+        <li class="main-menu">
+            <h3>Link2</h3>
+            <ul class="sub-menu">
+                <li>SubLink1</li>
+                <li>SubLink2</li>
+                <li>SubLink3</li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        var oMain = document.getElementById('menu');
+        var aH3 = oMain.getElementsByTagName('h3');
+        var aSub = oMain.getElementsByTagName('ul');
+        for(var i=0;i<aH3.length;i++){
+            aH3[i].index = i;
+            aH3[i].bShow = false;
+            aH3[i].onclick = function () {
+                if(this.bShow){
+                    aSub[this.index].style.display = 'none';
+                }else{
+                    aSub[this.index].style.display = 'block';
+                }
+                this.bShow = !this.bShow;
+            };
+
+            document.onselectstart = function () {
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
