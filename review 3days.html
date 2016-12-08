@@ -5,82 +5,18 @@
     <title>Title</title>
     <style>
         *{
-            padding: 0;
             margin: 0;
+            padding: 0;
         }
-        .circle{
-            width: 200px;
-            height: 200px;
-            border: 10px solid;
-            position: absolute;
-            border-radius: 50%;
-        }
-        .circle:after{
-            content: '';
-            width: 200px;
-            height: 200px;
-            display: block;
-            border: 10px solid;
-            position: relative;
-            border-radius: 50%;
-            left: -10px;
-            top: -10px;
-        }
-        .blue{
-            border-color: blue;
-        }
-        .blue:after{
-            border-color: blue;
-            z-index: 1;
-            border-bottom-color:transparent;
-        }
-        .yellow{
-            border-color: yellow;
-            left: 230px;
-        }
-        .yellow:after{
-            border-color: yellow;
-            z-index: 1;
-            border-left-color:transparent;
-        }
-        .red{
-            border-color: red;
-            left:460px;
-        }
-        .red:after{
-            border-color: red;
-            z-index: 1;
-            border-left-color:transparent;
-        }
-        .green{
-            border-color: green;
-            left: 120px;
-            top: 120px;
-        }
-        .green:after{
-            border-color: green;
-        }
-        .black{
-            border-color: black;
-            left: 350px;
-            top: 120px;
-        }
-        .black:after{
-            border-color: black;
-            z-index: 2;
-            border-top-color:transparent;
-            border-right-color: transparent;
-        }
-
+        
     </style>
 </head>
-<body>
-<div>
-    <div class="circle blue"></div>
-    <div class="circle yellow"></div>
-    <div class="circle red"></div>
-    <div class="circle green"></div>
-    <div class="circle black"></div>
-</div>
+<body id="container">
+    <div class="cube one">1</div>
+    <div class="cube two">2</div>
+    <div class="cube three">3</div>
+    <div class="cube four">4</div>
+    <div class="cube five">5</div>
+    <div class="cube six">6</div>
 </body>
 </html>
