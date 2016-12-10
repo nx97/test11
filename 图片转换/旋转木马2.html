@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>旋转木马</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #state{
+            width: 1300px;
+            height: 800px;
+            background: green;
+            box-shadow: 10px 10px 5px darkgreen;
+            margin: 100px auto;
+            position: relative;
+            overflow: hidden;
+            -webkit-perspective: 800px;
+            -webkit-perspective-origin: 50% -5%;
+        }
+        #container{
+            width: 212px;
+            height: 300px;
+            position: relative;
+            left:50%;
+            margin-left: -106px;
+            margin-top: 100px;
+            -webkit-transform-style: preserve-3d;
+            -webkit-transition: transform 1s ease-in-out;
+        }
+        #container img{
+            width: 212px;
+            height: 300px;
+            position: absolute;
+            cursor: pointer;
+            -webkit-transition: transform 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+<div id="state">
+    <div id="container">
+        <img src="images/001.jpeg">
+        <img src="images/002.jpeg">
+        <img src="images/003.jpeg">
+        <img src="images/004.jpeg">
+        <img src="images/005.jpeg">
+        <img src="images/006.jpeg">
+        <img src="images/007.jpeg">
+        <img src="images/008.jpeg">
+        <img src="images/009.jpeg">
+    </div>
+</div>
+<script>
+    var oContainer = document.getElementById('container');
+    var aImg = oContainer.getElementsByTagName('img');
+    var translateDis =  106/Math.tan(20*Math.PI/180);
+        for(var i=0;i<aImg.length;i++){
+            aImg[i].style.WebkitTransitionDelay = (9-i)*100 + 'ms';
+            aImg[i].style.WebkitTransform = 'rotateY('+ -40*i+'deg) translateZ('+(translateDis+20)+'px)';
+        }
+//    var j=0;
+//    var timer = setInterval(function () {
+//        aImg[j].style.WebkitTransitionDelay = (9-j)*100 + 'ms';
+//        aImg[j].style.WebkitTransform = 'rotateY('+ -40*j+'deg) translateZ('+(translateDis+20)+'px)';
+//        j++;
+//        if(j==9){
+//            clearInterval(timer);
+//        }
+//    },0);
+    idx=1;
+    oContainer.onclick = function () {
+        this.style.WebkitTransform = 'rotateY('+ -40*idx+'deg)';
+        idx++;
+    };
+
+    for(var i=0;i<aImg.length;i++){
+        (function (index) {
+            setTimeout(function () {
+                aImg[index].style.WebkitTransform = 'rotateY('+ -40*index+'deg) translateZ('+(translateDis+20)+'px)';
+            },(9-i) * 100);
+        })(i);
+    }
+//闭包：从表面上看，一个外部函数包含了一个内部函数，
+// 并且内部函数调用了外部函数的局部变量，
+// 当外部函数执行完成时，局部变量不被释放；
+</script>
+</body>
+</html>
