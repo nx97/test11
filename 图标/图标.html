@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图标</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            bottom:20px;
+            right: 20px;
+        }
+        #container img{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            -webkit-transition:all 1s ease;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img src="img/close.png">
+        <img src="img/full.png">
+        <img src="img/open.png">
+        <img src="img/prev.png">
+        <img src="img/refresh.png">
+        <img id="home" src="img/home.png">
+    </div>
+    <script>
+        var oHome = document.getElementById('home');
+        var aImg = document.getElementsByTagName('img');
+        var bFlag = true;
+        oHome.onclick = function () {
+            if(bFlag){
+                for(var i=0;i<aImg.length-1;i++){
+                    var x = -150 * Math.sin(i * 22.5 * Math.PI/180);
+                    var y = -150 * Math.cos(i * 22.5 * Math.PI/180);
+                    aImg[i].style.WebkitTransitionDelay = i*100 + 'ms';
+                    aImg[i].style.WebkitTransform = 'translate('+x+'px,'+y+'px) rotate(-360deg)';
+                }
+                this.style.WebkitTransform = 'rotate(-360deg)';
+            }else{
+                for(var i=0;i<aImg.length-1;i++){
+                    aImg[i].style.WebkitTransitionDelay = (aImg.length - 1 - i)*100 + 'ms';
+                    aImg[i].style.WebkitTransform = 'translate(0px,0px) rotate(0deg)';
+                }
+                this.style.WebkitTransform = 'rotate(0deg)';
+            }
+            bFlag = !bFlag;
+        }
+    </script>
+</body>
+</html>
