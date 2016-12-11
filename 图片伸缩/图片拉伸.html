@@ -8,25 +8,49 @@
             margin: 0;
             padding: 0;
         }
+        ul{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
         #container{
             width: 800px;
             height: 280px;
-            position: relative;
-            margin:50px auto;
+            margin:100px auto;
+            overflow: hidden;
         }
-        #container img{
-            width: 500px;
+        #container li{
+            width: 200px;
             height: 280px;
+            /*border-right:1px solid #fff;*/
+            float: left;
+            position: relative;
+            -webkit-transition: all 1s ease;
+        }
+        #container li a{
+            width: 600px;
+            height: 30px;
+            background: rgba(0, 0, 0, 0.5);
             position: absolute;
+            bottom:0;
+            color: white;
+            line-height:30px;
+        }
+        #container:hover li{
+            width: 100px;
+        }
+        #container li:hover{
+            width: 500px;
         }
     </style>
 </head>
 <body>
-<div id="container">
-    <img src="images/01.jpeg">
-    <img src="images/02.jpeg">
-    <img src="images/03.jpeg">
-    <img src="images/04.jpeg">
-</div>
+<ul id="container">
+    <li><img src="images/01.jpeg"><a>1</a></li>
+    <li><img src="images/02.jpeg"><a>2</a></li>
+    <li><img src="images/03.jpeg"><a>3</a></li>
+    <li><img src="images/04.jpeg"><a>4</a></li>
+</ul>
 </body>
 </html>
