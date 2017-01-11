@@ -1,4 +1,16 @@
 <?php
+if(!isset($_COOKIE['id']))
+    $str=$_SERVER['REQUET_UIR'];
+    $arr=explode('/',$str);
+    $num=count($arr)-1;
+    $uri=$arr["$num"];
+    header("location:login.php?uri=$uri");
+
+
+?>
+
+
+<?php
 /**
  * Created by PhpStorm.
  * User: niexin
